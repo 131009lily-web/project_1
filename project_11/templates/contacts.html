@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>BeautyHUB | Контакты</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="script.js"></script>
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-spa"></i> BeautyHUB
+        </a>
+        <div class="selector">
+            <a href="{{ url_for('clients') }}" class="user">Клиентам</a>
+            <a href="{{ url_for('masters') }}" class="user">Мастерам</a>
+            <a href="{{ url_for('landlords') }}" class="user">Арендодателям</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="nav-link active">Главная</a></li>
+                <li><a href="{{ url_for('gallery') }}" class="nav-link">Галерея</a></li>
+                <li><a href="{{ url_for('contacts') }}" class="nav-link">Контакты</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('profile') }}" class="nav-link">Мой профиль</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="nav-link login-btn">Выйти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="nav-link login-btn">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <a href="{{ url_for('contacts') }}" class="button_con">Связаться</a>
+    </div>
+</header>
+<section class="hero">
+    <div class="container hero-content">
+        <h1>Контакты</h1>
+        <p>Свяжитесь с нами любым удобным способом</p>
+    </div>
+</section>
+<section class="contact-info-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Адрес</h3>
+                <p>ул. Косметическая, 10</p>
+                <p>Москва, 123456</p>
+                <a href="https://maps.google.com" class="contact-link" target="_blank">Посмотреть на карте →</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Телефон</h3>
+                <p>+7 (495) 123-45-67</p>
+                <p>+7 (999) 123-45-67</p>
+                <a href="tel:+74951234567" class="contact-link">Позвонить сейчас →</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>info@beautyhub.ru</p>
+                <p>booking@beautyhub.ru</p>
+                <a href="mailto:info@beautyhub.ru" class="contact-link">Написать письмо →</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Часы работы</h3>
+                <p>Пн-Пт: 9:00 - 21:00</p>
+                <p>Сб-Вс: 10:00 - 20:00</p>
+                <a href="#contact-form" class="contact-link">Записаться онлайн →</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="map-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Мы находимся здесь</h2>
+            <p>Приходите к нам в гости в удобное для вас время</p>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.372789963201!2d37.61729931593076!3d55.75582628055296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a50b315e573%3A0xa886bf5a3d9b2e68!2z0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1623756789012!5m2!1sru!2sru" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+<section class="contact-form-section" id="contact-form">
+    <div class="container">
+        <div class="section-title">
+            <h2>Оставьте заявку</h2>
+            <p>Мы свяжемся с вами в ближайшее время</p>
+        </div>
+        <div class="contact-form-container">
+            <form class="contact-form" id="mainContactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="user-type">Я *</label>
+                    <select id="user-type" name="user-type" required>
+                        <option value="">Выберите тип пользователя</option>
+                        <option value="client">Клиент</option>
+                        <option value="master">Мастер</option>
+                        <option value="landlord">Арендодатель</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service">Интересующая услуга</label>
+                    <select id="service" name="service">
+                        <option value="">Выберите услугу</option>
+                        <option value="cosmetology">Косметология</option>
+                        <option value="makeup">Макияж</option>
+                        <option value="nails">Маникюр/педикюр</option>
+                        <option value="hair">Парикмахерские услуги</option>
+                        <option value="brows">Брови и ресницы</option>
+                        <option value="massage">Массаж</option>
+                        <option value="rent">Аренда рабочего места</option>
+                        <option value="space">Сдача помещения</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" placeholder="Расскажите о ваших потребностях..." rows="5"></textarea>
+                </div>
+                <button type="submit" class="cta-button">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+</section>
+<section class="faq-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Частые вопросы</h2>
+            <p>Ответы на популярные вопросы от наших клиентов</p>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>Как записаться на услугу?</h3>
+                <p>Вы можете записаться через форму на сайте, по телефону или лично посетив наш коворкинг.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Можно ли привести своего мастера?</h3>
+                <p>Да, мы предоставляем рабочие места для приглашенных специалистов по предварительной записи.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Есть ли парковка?</h3>
+                <p>Да, у нас есть бесплатная парковка для клиентов на 10 машиномест.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Можно ли оплатить картой?</h3>
+                <p>Да, мы принимаем все основные банковские карты и бесконтактные платежи.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>BeautyHUB</h4>
+                <p>Коворкинг для косметических услуг в самом центре Москвы.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Косметическая, 10</li>
+                    <li><i class="fas fa-envelope"></i> info@beautyhub.ru</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Часы работы</h4>
+                <ul>
+                    <li>Пн-Пт: 9:00 - 21:00</li>
+                    <li>Сб-Вс: 10:00 - 20:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2025 BeautyHUB. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Вход — BeautyHUB</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-spa"></i> BeautyHUB
+        </a>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="nav-link">Главная</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('profile') }}" class="nav-link">Мой профиль</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="nav-link login-btn">Выйти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="nav-link login-btn">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+<main class="wrap_1">
+    <div class="container_1">
+        <aside class="card_1">
+        <h2>Вход в систему</h2>
+        <form action="#" method="post" class="form_1">
+            <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="anna@example.com" />
+          <label for="password">Пароль</label>
+          <input id="password" name="password" type="password" required placeholder="Введите ваш пароль" />
+          <button type="submit" class="button_1">Войти</button>
+          <div class="alt_1">Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрироваться</a></div>
+        </form>
+      </aside>
+      <section class="branding_1">
+        <div class="logo_1">
+          <div class="mark_1">B</div>
+          <div>
+            <h1>BeautyHUB</h1>
+            <p class="lead_1">Вернитесь к вашему пространству</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

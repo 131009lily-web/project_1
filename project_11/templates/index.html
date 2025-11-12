@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeautyHUB | Главная - Коворкинг для косметических услуг</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-spa"></i> BeautyHUB
+        </a>
+        <div class="selector">
+            <a href="{{ url_for('clients') }}" class="user">Клиентам</a>
+            <a href="{{ url_for('masters') }}" class="user">Мастерам</a>
+            <a href="{{ url_for('landlords') }}" class="user">Арендодателям</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="nav-link active">Главная</a></li>
+                <li><a href="{{ url_for('gallery') }}" class="nav-link">Галерея</a></li>
+                <li><a href="{{ url_for('contacts') }}" class="nav-link">Контакты</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('profile') }}" class="nav-link">Мой профиль</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="nav-link login-btn">Выйти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="nav-link login-btn">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <a href="{{ url_for('contacts') }}" class="button_con">Связаться</a>
+    </div>
+</header>
+<section class="hero">
+    <div class="container hero-content">
+        <h1>Коворкинг для косметических услуг</h1>
+        <p>Профессиональное пространство для бьюти-специалистов и комфортная атмосфера для ваших клиентов</p>
+        <div class="buttons">
+            <a href="{{ url_for('contacts') }}" class="button_con">Записаться на экскурсию</a>
+            <a href="{{ url_for('register') }}"class="cta-button secondary">Создать аккаунт</a>
+        </div>
+    </div>
+</section>
+<section class="features">
+    <div class="container">
+        <div class="section-title">
+            <h2>Почему выбирают нас</h2>
+            <p>Мы создали идеальное пространство для работы и отдыха</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <h3>Комфортные рабочие места</h3>
+                <p>Эргономичные зоны, оборудованные всем необходимым для качественного оказания услуг</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Профессиональное оборудование</h3>
+                <p>Современная техника и инструменты премиум-класса для всех видов косметических услуг</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-concierge-bell"></i>
+                </div>
+                <h3>Зона ожидания для клиентов</h3>
+                <p>Уютная гостиная с напитками и Wi-Fi, где ваши клиенты могут расслабиться перед процедурой</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="quick-links">
+    <div class="container">
+        <div class="section-title">
+            <h2>Быстрый доступ</h2>
+            <p>Выберите подходящий для вас раздел</p>
+        </div>
+        <div class="links-grid">
+            <a href="{{ url_for('clients') }}" class="quick-link-card">
+            <div class="quick-link-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h3>Для клиентов</h3>
+            <p>Найдите специалиста и запишитесь на услугу</p>
+            <span class="link-arrow">→</span>
+            </a>
+            <a href="{{ url_for('masters') }}" class="quick-link-card">
+                <div class="quick-link-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h3>Для мастеров</h3>
+                <p>Начните работать в нашем пространстве</p>
+                <span class="link-arrow">→</span>
+            </a>
+            <a href="{{ url_for('landlords') }}" class="quick-link-card">
+                <div class="quick-link-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Для арендодателей</h3>
+                <p>Сдайте помещение в аренду</p>
+                <span class="link-arrow">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>BeautyHUB</h4>
+                <p>Коворкинг для косметических услуг в самом центре Москвы.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul>
+                    <li>📞 +7 (495) 123-45-67</li>
+                    <li>📍 Москва, ул. Косметическая, 10</li>
+                    <li>✉️ info@beautyhub.ru</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Часы работы</h4>
+                <ul>
+                    <li>🕘 Пн-Пт: 9:00 - 21:00</li>
+                    <li>🕙 Сб-Вс: 10:00 - 20:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2025 BeautyHUB. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

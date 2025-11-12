@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой профиль | BeautyHUB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <a href="{{ url_for('index') }}" class="logo">
+            <i class="fas fa-spa"></i> BeautyHUB
+        </a>
+        <div class="selector">
+            <a href="{{ url_for('clients') }}" class="user">Клиентам</a>
+            <a href="{{ url_for('masters') }}" class="user">Мастерам</a>
+            <a href="{{ url_for('landlords') }}" class="user">Арендодателям</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="nav-link">Главная</a></li>
+                <li><a href="{{ url_for('gallery') }}" class="nav-link">Галерея</a></li>
+                <li><a href="{{ url_for('contacts') }}" class="nav-link">Контакты</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('profile') }}" class="nav-link">Мой профиль</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="nav-link login-btn">Выйти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="nav-link login-btn">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <a href="{{ url_for('contacts') }}" class="button_con">Связаться</a>
+    </div>
+</header>
+
+<main class="wrap_1">
+    <div class="profile-container">
+        <div class="card_1 profile-card">
+
+            <div class="section-title">
+                <h2>Личный кабинет</h2>
+                <p>Здесь вы можете просмотреть свои данные.</p>
+            </div>
+
+            <div class="profile-info">
+                <div class="info-item">
+                    <span class="info-label">Имя:</span>
+                    <span class="info-value">{{ user.first_name }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Фамилия:</span>
+                    <span class="info-value">{{ user.last_name or 'Не указана' }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value">{{ user.email }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Телефон:</span>
+                    <span class="info-value">{{ user.phone or 'Не указан' }}</span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="#" class="cta-button secondary">Редактировать</a>
+                <a href="{{ url_for('logout') }}" class="button_con">Выйти из аккаунта</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>BeautyHUB</h4>
+                <p>Коворкинг для косметических услуг в самом центре Москвы.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Косметическая, 10</li>
+                    <li><i class="fas fa-envelope"></i> info@beautyhub.ru</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Часы работы</h4>
+                <ul>
+                    <li><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 21:00</li>
+                    <li><i class="fas fa-clock"></i> Сб-Вс: 10:00 - 20:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>2025 BeautyHUB. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
